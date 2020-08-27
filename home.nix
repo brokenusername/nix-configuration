@@ -11,14 +11,12 @@ let
     sha256 = "90c59b23c3dd4039a38f9217c41b9b89acc0098b59ded577c9137fe1a52c3d8a";
   };
 
-  winbox-run = pkgs.writeScriptBin "winbox" ''
-    #!${pkgs.stdenv.shell}
-    ${pkgs.wine}/bin/wine ${winbox}
+  jenkins-script = pkgs.writeShellScriptBin "jenkins" ''
+    ${pkgs.jdk11}/bin/java -jar ${war}
   '';
 
-  jenkins-script = pkgs.writeScriptBin "jenkins" ''
-    #!${pkgs.stdenv.shell}
-    ${pkgs.jdk11}/bin/java -jar ${war}
+  winbox-run = pkgs.writeShellScriptBin "winbox" ''
+    ${pkgs.wine}/bin/wine ${winbox}
   '';
 in
 
@@ -37,12 +35,13 @@ in
       ./i3.nix
       ./git.nix
       ./go.nix
-      ./ssh.nix ];
+      ./ssh.nix 
+      ./zsh.nix ];
   
   home.packages = (with pkgs; [
     acpi       aria       adapta-gtk-theme  ansible  aws
     chromium   clojure
-    dhall-bash dhall-json dhall-nix         dmenu
+    dhall-bash dhall-json dhall-nix         direnv   dmenu
     elixir
     feh        fish       flat-remix-icon-theme
     gimp       guvcview
@@ -53,6 +52,7 @@ in
     nixops     nmap-graphical
     plano-theme
     sakura     scummvm    stilo-themes
+    terraform  tree
     unzip
     vlc
     w3m        wine       winbox-run
@@ -64,7 +64,7 @@ in
     defaultCacheTtl = 1800;
     enableSshSupport = true;
   };
-  
+
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards

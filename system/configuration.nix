@@ -15,14 +15,20 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;
+  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  # networking.networkmanager.enable = true;
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
   networking.useDHCP = false;
   networking.interfaces.wlp2s0.useDHCP = true;
+  networking.wireless.networks = {
+    "NETGEAR30-5G" = {
+       pskRaw = "2240d3156a7d07421a2cc267511601a87c3a8581e6eca0c3a9e68ce6042f0af9";
+    };
+  };
+
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -43,7 +49,7 @@
   environment.systemPackages = with pkgs; [
      xmobar
   ];
-  programs.nm-applet.enable = true;
+  #programs.nm-applet.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -111,9 +117,23 @@
     windowManager.i3.enable = true;
   };
 
+  environment.etc = {
+    shells = {
+      text = ''
+        /run/current-system/sw/bin/bash
+        /run/current-system/sw/bin/sh
+        /nix/store/4xb9z8vvk3fk2ciwqh53hzp72d0hx1da-bash-interactive-4.4-p23/bin/bash
+        /nix/store/4xb9z8vvk3fk2ciwqh53hzp72d0hx1da-bash-interactive-4.4-p23/bin/sh
+        /bin/sh
+        /home/james/.nix-profile/bin/zsh
+      '';
+    };
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.james = {
     isNormalUser = true;
+    shell = pkgs.zsh;
     extraGroups = [ "wheel" "audio" "video" "networkmanager" "docker" ]; # Enable ‘sudo’ for the user.
   };
 

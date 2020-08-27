@@ -35,6 +35,7 @@ in
       ./i3.nix
       ./git.nix
       ./go.nix
+      ./services.nix
       ./ssh.nix 
       ./zsh.nix ];
   
@@ -48,7 +49,7 @@ in
     hack-font  htop
     jdk11      jenkins-script
     leiningen
-    mc
+    mc         mcron
     nixops     nmap-graphical
     plano-theme
     sakura     scummvm    stilo-themes

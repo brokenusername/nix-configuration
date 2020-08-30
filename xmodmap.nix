@@ -63,5 +63,17 @@
     
     remove Mod1 = Alt_L
     add Mod4 = Alt_L
+
+    remove Mod4 = Super_L
+    add control = Super_L
+
+    remove Mod4 = Super_R
+    add control = Super_R
+
+    remove control = Control_L
+    add Mod4 = Control_L
+
+    remove control = Control_R
+    add Mod4 = Control_R
   '';
 }

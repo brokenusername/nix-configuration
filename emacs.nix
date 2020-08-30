@@ -38,5 +38,6 @@
     (global-set-key (kbd "C-x C-0") #'delete-window)
     (global-set-key (kbd "C-x C-k") #'kill-buffer)
     (global-set-key (kbd "C-x C-o") #'other-window)
+    (global-set-key (kbd "<XF86Calculator>") #'calc)
   '';
 }

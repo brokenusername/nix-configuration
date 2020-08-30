@@ -37,6 +37,7 @@ in
       ./go.nix
       ./services.nix
       ./ssh.nix 
+      ./xmodmap.nix
       ./zsh.nix ];
   
   home.packages = (with pkgs; [
@@ -47,7 +48,7 @@ in
     feh        fish       flat-remix-icon-theme
     gimp       guvcview
     hack-font  htop
-    jdk11      jenkins-script
+    jdk11      jenkins-script               jp2a
     leiningen
     mc         mcron
     nixops     nmap-graphical
@@ -57,7 +58,7 @@ in
     unzip
     vlc
     w3m        wine       winbox-run
-    xorg.xcursorthemes    xscreensaver
+    xorg.xcursorthemes    xorg.xbacklight   xscreensaver
   ]);
 
   services.gpg-agent = {

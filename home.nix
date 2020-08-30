@@ -18,47 +18,72 @@ let
   winbox-run = pkgs.writeShellScriptBin "winbox" ''
     ${pkgs.wine}/bin/wine ${winbox}
   '';
-in
 
-{
+in {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-  
+
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "james";
   home.homeDirectory = "/home/james";
 
-  imports =
-    [ ./bash.nix
-      ./emacs.nix
-      ./i3.nix
-      ./git.nix
-      ./go.nix
-      ./services.nix
-      ./ssh.nix 
-      ./xmodmap.nix
-      ./zsh.nix ];
-  
+  imports = [
+    ./bash.nix
+    ./emacs.nix
+    ./i3.nix
+    ./git.nix
+    ./go.nix
+    ./services.nix
+    ./ssh.nix
+    ./xmodmap.nix
+    ./zsh.nix
+  ];
+
   home.packages = (with pkgs; [
-    acpi       aria       adapta-gtk-theme  ansible  aws
-    chromium   clojure
-    dhall-bash dhall-json dhall-nix         direnv   dmenu
+    acpi
+    aria
+    adapta-gtk-theme
+    ansible
+    aws
+    chromium
+    clojure
+    dhall-bash
+    dhall-json
+    dhall-nix
+    direnv
+    dmenu
     elixir
-    feh        fish       flat-remix-icon-theme
-    gimp       guvcview
-    hack-font  htop
-    jdk11      jenkins-script               jp2a
+    feh
+    fish
+    flat-remix-icon-theme
+    gimp
+    guvcview
+    hack-font
+    htop
+    jdk11
+    jenkins-script
+    jp2a
     leiningen
-    mc         mcron
-    nixops     nmap-graphical
+    mc
+    mcron
+    nixfmt
+    nixops
+    nmap-graphical
     plano-theme
-    sakura     scummvm    stilo-themes
-    terraform  tree
+    sakura
+    scummvm
+    stilo-themes
+    terraform
+    tree
     unzip
     vlc
-    w3m        wine       winbox-run
-    xorg.xcursorthemes    xorg.xbacklight   xscreensaver
+    w3m
+    wine
+    winbox-run
+    xorg.xcursorthemes
+    xorg.xbacklight
+    xscreensaver
   ]);
 
   services.gpg-agent = {

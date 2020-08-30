@@ -3,7 +3,7 @@
     enable = true;
     historyFileSize = 1000;
     historyControl = [ "erasedups" ];
-    historyIgnore  = [ "ls" "cd" "exit" "pwd" ];
+    historyIgnore = [ "ls" "cd" "exit" "pwd" ];
     shellAliases = {
       "cdl" = "cd && clear";
       "em" = "emacsclient -c";
